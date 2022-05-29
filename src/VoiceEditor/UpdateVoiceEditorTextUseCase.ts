@@ -1,4 +1,5 @@
 import { VEditor, createVEditor, updateVEditor } from 'domain/VEditor'
+
 import { vEditorRepository } from 'infra/VEditorRepository'
 
 export function UpdateVoiceEditorTextUseCase(infra = { vEditorRepository }) {

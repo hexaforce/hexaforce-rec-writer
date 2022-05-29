@@ -3,7 +3,7 @@ import { Sentence } from 'domain/Sentence'
 export class SpeakerMemoryId {
   type = 'SpeakerMemoryId' as const
 
-  constructor(public value: string) { }
+  constructor(public value: string) {}
 }
 
 export type SpeakerMemoryProps = {

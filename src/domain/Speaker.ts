@@ -4,7 +4,7 @@ import { SpeakerMemory } from 'domain/SpeakerMemory'
 export class SpeakerId {
   type = 'SpeakerId' as const
 
-  constructor(public readonly value: string) { }
+  constructor(public readonly value: string) {}
 }
 
 export type SpeakerProps = {

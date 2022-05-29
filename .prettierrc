@@ -8,6 +8,13 @@
   "semi": false,
   "importOrder": [
     "^react",
+    "^preact",
+    "^domain",
+    "^frameworks",
+    "^hooks",
+    "^infra",
+    "^VoiceEditor",
+    "^VoiceUI",
     "^@mui/(.*)$",
     "^[./]"
   ],

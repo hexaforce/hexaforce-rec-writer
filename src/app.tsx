@@ -1,7 +1,9 @@
-import { h, render } from 'preact'
 import { useRegisterSW } from 'virtual:pwa-register/preact'
 
+import { h, render } from 'preact'
+
 import { VoiceEditor } from 'VoiceEditor/VoiceEditor'
+
 import { VoiceUI } from 'VoiceUI/VoiceUI'
 
 export const App = () => {

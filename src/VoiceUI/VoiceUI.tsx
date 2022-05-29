@@ -1,15 +1,18 @@
+import SiriWave from 'siriwave'
+
 import { h } from 'preact'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'preact/hooks'
 import type { JSXInternal } from 'preact/src/jsx'
-import SiriWave from 'siriwave'
 
-import * as voiceEditorState from 'VoiceEditor/VoiceEditorState'
 import { useTabFocus } from 'hooks/use-tab-focus'
 import { useTabVisibility } from 'hooks/use-tab-visibility'
 import { useStore } from 'hooks/useStore'
+
+import * as voiceEditorState from 'VoiceEditor/VoiceEditorState'
+
+import 'VoiceUI.css'
 import { speakerSpeakSentenceUseCase } from 'VoiceUI/SpeakerSpeakSentenceUseCase'
 import type { SpeechRecognition } from 'VoiceUI/SpeechRecognition'
-import 'VoiceUI.css'
 import { createXCallback } from 'VoiceUI/modules/xCallbackUrl'
 
 export type VoiceUIStatus = 'pause' | 'processing' | 'error'

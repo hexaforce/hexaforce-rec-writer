@@ -1,4 +1,5 @@
 import { memorizePredableStore } from 'frameworks/MemorizePredableStore'
+
 import { speakerRepository } from 'infra/SpeakerRepository'
 import { vEditorRepository } from 'infra/VEditorRepository'
 

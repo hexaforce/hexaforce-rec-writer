@@ -1,6 +1,7 @@
 import { EditorState, EditorView, basicSetup } from '@codemirror/basic-setup'
 import { cursorDocEnd, cursorLineDown } from '@codemirror/commands'
 import { placeholder } from '@codemirror/view'
+
 import { h } from 'preact'
 import { useCallback, useEffect, useMemo, useRef } from 'preact/hooks'
 import type { JSXInternal } from 'preact/src/jsx'
