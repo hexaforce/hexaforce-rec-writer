@@ -1,4 +1,4 @@
-import { memorizePredableStore } from 'frameworks/MemorizePredableStore'
+import { memorizePredableStore } from './MemorizePredableStore'
 
 export type PrediableStore<
   Domain extends {

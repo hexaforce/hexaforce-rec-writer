@@ -1,7 +1,6 @@
 import { ulid } from 'ulid'
 
-import { Speaker, SpeakerId } from 'domain/Speaker'
-
+import { Speaker, SpeakerId } from './Speaker'
 import { SpeakerMemory, SpeakerMemoryId } from './SpeakerMemory'
 
 export const createSpeaker = () => {

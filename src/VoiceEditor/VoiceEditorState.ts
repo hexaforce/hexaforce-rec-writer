@@ -1,7 +1,6 @@
-import { memorizePredableStore } from 'frameworks/MemorizePredableStore'
-
-import { speakerRepository } from 'infra/SpeakerRepository'
-import { vEditorRepository } from 'infra/VEditorRepository'
+import { memorizePredableStore } from '../frameworks/MemorizePredableStore'
+import { speakerRepository } from '../infra/SpeakerRepository'
+import { vEditorRepository } from '../infra/VEditorRepository'
 
 export const createEditorStore = (infra = { speakerRepository, vEditorRepository }) => {
   const get = () => {
@@ -28,8 +27,10 @@ export const createEditorStore = (infra = { speakerRepository, vEditorRepository
     onChange,
   }
 }
+
 // @Cost: low
 const editorStore = memorizePredableStore(createEditorStore())
+
 // @Cost: high
 export const getState = (store = editorStore) => {
   return {
@@ -38,4 +39,5 @@ export const getState = (store = editorStore) => {
     addingSentences: store.select(({ speaker }) => speaker?.memory.sentences ?? []),
   }
 }
+
 export const onChange = editorStore.onChange

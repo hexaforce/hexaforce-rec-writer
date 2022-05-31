@@ -1,4 +1,4 @@
-import { Sentence } from 'domain/Sentence'
+import { Sentence } from './Sentence'
 
 export class SpeakerMemoryId {
   type = 'SpeakerMemoryId' as const

@@ -1,6 +1,6 @@
 import { eventmit } from 'eventmit'
 
-import type { Speaker } from 'domain/Speaker'
+import type { Speaker } from '../domain/Speaker'
 
 export class DomainMap<Domain extends Speaker> extends Map<Domain['id'], Domain> {
   private __last__value__: undefined | Domain

@@ -1,5 +1,5 @@
-import { Sentence } from 'domain/Sentence'
-import { SpeakerMemory } from 'domain/SpeakerMemory'
+import { Sentence } from './Sentence'
+import { SpeakerMemory } from './SpeakerMemory'
 
 export class SpeakerId {
   type = 'SpeakerId' as const

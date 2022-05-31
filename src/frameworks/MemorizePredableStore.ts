@@ -1,6 +1,6 @@
 import getCompositeSymbol from 'composite-symbol'
 
-import { PrediableStore } from 'frameworks/PredableState'
+import { PrediableStore } from './PredableState'
 
 function assertIsSelector<T>(val: any): asserts val is PrediableStore<T> {
   if (typeof val !== 'object') {

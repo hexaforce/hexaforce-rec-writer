@@ -1,7 +1,6 @@
-import { createSpeaker } from 'domain'
-import { Sentence } from 'domain/Sentence'
-
-import { speakerRepository } from 'infra/SpeakerRepository'
+import { createSpeaker } from '../domain'
+import { Sentence } from '../domain/Sentence'
+import { speakerRepository } from '../infra/SpeakerRepository'
 
 export function UpdateSpokenSentenceUseCase(infra = { speakerRepository }) {
   return {

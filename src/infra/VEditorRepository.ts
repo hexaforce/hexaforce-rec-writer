@@ -1,6 +1,6 @@
 import { eventmit } from 'eventmit'
 
-import { VEditor } from 'domain/VEditor'
+import { VEditor } from '../domain/VEditor'
 
 export class DomainMap<Domain extends VEditor> extends Map<Domain['id'], Domain> {
   private __last__value__: undefined | Domain
