@@ -3,8 +3,7 @@ import { ulid } from 'ulid'
 
 export class VEditorId {
   type = 'VEditorId' as const
-
-  constructor(public value: string) { }
+  constructor(public value: string) {}
 }
 
 export type VEditor = {

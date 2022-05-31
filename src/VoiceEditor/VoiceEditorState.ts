@@ -1,7 +1,7 @@
 import getCompositeSymbol from 'composite-symbol'
+
 import { speakerRepository } from '../infra/SpeakerRepository'
 import { vEditorRepository } from '../infra/VEditorRepository'
-
 
 function assertIsSelector<T>(val: any): asserts val is PrediableStore<T> {
   if (typeof val !== 'object') {
@@ -64,12 +64,12 @@ export type PrediableStore<
   Domain extends {
     [index: string]: any | undefined
   },
-  > = {
-    name?: string
-    get(): Domain
-    select<R>(selector: (domain: Domain) => R): R
-    onChange(changeHandler: () => void): () => void
-  }
+> = {
+  name?: string
+  get(): Domain
+  select<R>(selector: (domain: Domain) => R): R
+  onChange(changeHandler: () => void): () => void
+}
 
 type InfraParameter = {
   [index: string]: any
@@ -144,4 +144,3 @@ export const getState = (store = editorStore) => {
 }
 
 export const onChange = editorStore.onChange
-

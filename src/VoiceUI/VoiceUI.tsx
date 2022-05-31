@@ -1,10 +1,11 @@
 import { h } from 'preact'
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks'
 import type { JSXInternal } from 'preact/src/jsx'
-import type { SpeechRecognition } from './SpeechRecognition'
-import './VoiceUI.css'
-import { createSpeaker, Sentence } from '../domain'
+
+// import './VoiceUI.css'
+import { Sentence, createSpeaker } from '../domain'
 import { speakerRepository } from '../infra/SpeakerRepository'
+import type { SpeechRecognition } from './SpeechRecognition'
 
 export type VoiceUIStatus = 'pause' | 'processing' | 'error'
 

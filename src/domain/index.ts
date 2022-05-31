@@ -20,8 +20,7 @@ const vcommand = (value: string) => {
 }
 
 export class Sentence {
-  constructor(public value: string) { }
-
+  constructor(public value: string) {}
   toSentence() {
     return LINE_END_PATTERN.test(this.value) ? vcommand(this.value) : vcommand(this.value)
   }
@@ -29,8 +28,7 @@ export class Sentence {
 
 export class SpeakerId {
   type = 'SpeakerId' as const
-
-  constructor(public readonly value: string) { }
+  constructor(public readonly value: string) {}
 }
 
 export type SpeakerProps = {
@@ -41,7 +39,6 @@ export type SpeakerProps = {
 export class Speaker implements SpeakerProps {
   id: SpeakerId
   memory: SpeakerMemory
-
   constructor(props: SpeakerProps) {
     this.id = props.id
     this.memory = props.memory
@@ -62,11 +59,9 @@ export class Speaker implements SpeakerProps {
   }
 }
 
-
 export class SpeakerMemoryId {
   type = 'SpeakerMemoryId' as const
-
-  constructor(public value: string) { }
+  constructor(public value: string) {}
 }
 
 export type SpeakerMemoryProps = {
@@ -77,7 +72,6 @@ export type SpeakerMemoryProps = {
 export class SpeakerMemory implements SpeakerMemoryProps {
   id!: SpeakerMemoryId
   sentences!: Sentence[]
-
   constructor(props: SpeakerMemoryProps) {
     Object.assign(this, props)
   }

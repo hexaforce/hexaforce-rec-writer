@@ -1,15 +1,16 @@
-import { EditorState, EditorView, basicSetup } from '@codemirror/basic-setup'
-import { cursorDocEnd, cursorLineDown } from '@codemirror/commands'
-import { placeholder } from '@codemirror/view'
 import { h } from 'preact'
 import { useEffect, useRef } from 'preact/hooks'
 import type { JSXInternal } from 'preact/src/jsx'
 
-import { useStore } from './useStore'
-import * as VoiceEditorState from './VoiceEditorState'
+import { EditorState, EditorView, basicSetup } from '@codemirror/basic-setup'
+import { cursorDocEnd, cursorLineDown } from '@codemirror/commands'
+import { placeholder } from '@codemirror/view'
+
 import { createSpeaker } from '../domain'
 import { Sentence } from '../domain'
 import { speakerRepository } from '../infra/SpeakerRepository'
+import * as VoiceEditorState from './VoiceEditorState'
+import { useStore } from './useStore'
 
 export type VoiceEditorProps = JSXInternal.HTMLAttributes<HTMLDivElement>
 export const VoiceEditor = (props: VoiceEditorProps) => {
@@ -19,7 +20,6 @@ export const VoiceEditor = (props: VoiceEditorProps) => {
   const editorViewRef = useRef<EditorView>()
 
   useEffect(() => {
-
     const editorState = EditorState.create({
       extensions: [
         basicSetup,
@@ -43,16 +43,13 @@ export const VoiceEditor = (props: VoiceEditorProps) => {
       editorView.destroy()
       refCurrent?.remove()
     }
-
   }, []) // eslint-disable-line -- storage at first
 
   const voiceEditorState = useStore(VoiceEditorState)
 
   useEffect(() => {
-
     const editorView = editorViewRef.current
-    if (!voiceEditorState.hasAddingSentences || !editorView)
-      return
+    if (!voiceEditorState.hasAddingSentences || !editorView) return
 
     const transaction = editorView.state.update({
       changes: voiceEditorState.addingSentences.map((sentence) => {
@@ -66,11 +63,9 @@ export const VoiceEditor = (props: VoiceEditorProps) => {
     editorView.dispatch(transaction)
     cursorLineDown(editorView)
     updateSpokenSentenceUseCase().execute(voiceEditorState.addingSentences)
-
   }, [voiceEditorState])
 
   return <div className={'VoiceEditor'} ref={divRef} {...divProps} />
-
 }
 
 const updateSpokenSentenceUseCase = (infra = { speakerRepository }) => {

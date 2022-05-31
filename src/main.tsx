@@ -1,9 +1,9 @@
 import { render } from 'preact'
 
-import './index.css'
-
 import { VoiceEditor } from './VoiceEditor/VoiceEditor'
 import { VoiceUI } from './VoiceUI/VoiceUI'
+import './index.css'
+
 export function App() {
   return (
     <main style={{ display: 'flex', flexDirection: 'column' }} className={'main'}>
