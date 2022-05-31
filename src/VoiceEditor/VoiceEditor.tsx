@@ -48,6 +48,7 @@ export const VoiceEditor = (props: VoiceEditorProps) => {
   const voiceEditorState = useStore(VoiceEditorState)
 
   useEffect(() => {
+
     const editorView = editorViewRef.current
     if (!voiceEditorState.hasAddingSentences || !editorView) return
 
@@ -62,10 +63,13 @@ export const VoiceEditor = (props: VoiceEditorProps) => {
 
     editorView.dispatch(transaction)
     cursorLineDown(editorView)
+
     updateSpokenSentenceUseCase().execute(voiceEditorState.addingSentences)
+
   }, [voiceEditorState])
 
   return <div className={'VoiceEditor'} ref={divRef} {...divProps} />
+
 }
 
 const updateSpokenSentenceUseCase = (infra = { speakerRepository }) => {
