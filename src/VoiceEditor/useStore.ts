@@ -4,6 +4,7 @@ export type Store<T> = {
   onChange: (cb: () => unknown) => () => unknown
   getState: () => T
 }
+
 export const useStore = <T>(store: Store<T>) => {
   const [state, setState] = useState(store.getState())
   useEffect(() => {

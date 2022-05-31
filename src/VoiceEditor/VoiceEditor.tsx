@@ -5,7 +5,7 @@ import { h } from 'preact'
 import { useEffect, useRef } from 'preact/hooks'
 import type { JSXInternal } from 'preact/src/jsx'
 
-import { useStore } from '../hooks/useStore'
+import { useStore } from './useStore'
 import { updateSpokenSentenceUseCase } from './UpdateSpokenSentenceUseCase'
 import * as VoiceEditorState from './VoiceEditorState'
 

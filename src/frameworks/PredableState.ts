@@ -4,12 +4,12 @@ export type PrediableStore<
   Domain extends {
     [index: string]: any | undefined
   },
-> = {
-  name?: string
-  get(): Domain
-  select<R>(selector: (domain: Domain) => R): R
-  onChange(changeHandler: () => void): () => void
-}
+  > = {
+    name?: string
+    get(): Domain
+    select<R>(selector: (domain: Domain) => R): R
+    onChange(changeHandler: () => void): () => void
+  }
 
 type InfraParameter = {
   [index: string]: any
@@ -17,6 +17,7 @@ type InfraParameter = {
 type DomainParameter = {
   [index: string]: any | undefined
 }
+
 export type CreateStore<Infra extends InfraParameter, Domain = DomainParameter> = (infra: Infra) => PrediableStore<Domain>
 
 function assertIsStoreCreator(val: unknown): asserts val is CreateStore<{}> {

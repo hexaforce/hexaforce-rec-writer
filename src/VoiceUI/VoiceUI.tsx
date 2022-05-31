@@ -3,8 +3,8 @@ import { useCallback, useEffect, useRef, useState } from 'preact/hooks'
 import type { JSXInternal } from 'preact/src/jsx'
 // import SiriWave from 'siriwave'
 
-import { useTabFocus } from '../hooks/use-tab-focus'
-import { useTabVisibility } from '../hooks/use-tab-visibility'
+// import { useTabFocus } from '../hooks/use-tab-focus'
+// import { useTabVisibility } from '../hooks/use-tab-visibility'
 import { speakerSpeakSentenceUseCase } from './SpeakerSpeakSentenceUseCase'
 import type { SpeechRecognition } from './SpeechRecognition'
 import './VoiceUI.css'
@@ -153,4 +153,53 @@ export const VoiceUI = (props: VoiceUIProps) => {
       <div ref={siriRef} class={'VoiceUI-bar'} /> */}
     </div>
   )
+}
+
+const useTabFocus = () => {
+  const [hasFocus, setHasFocus] = useState(true)
+  const onFocus = useCallback(() => setHasFocus(true), [setHasFocus])
+  const onBlur = useCallback(() => setHasFocus(false), [setHasFocus])
+  useEffect(() => {
+    window.addEventListener('focus', onFocus, false)
+    window.addEventListener('blur', onBlur, false)
+    return () => {
+      document.removeEventListener('blur', onBlur)
+      document.removeEventListener('focus', onFocus)
+    }
+  }, [onBlur, onFocus])
+
+  return hasFocus
+}
+
+let hidden: string
+let visibilityChange: string
+
+if (typeof document.hidden !== 'undefined') {
+  hidden = 'hidden'
+  visibilityChange = 'visibilitychange'
+  // @ts-ignore
+} else if (typeof document.msHidden !== 'undefined') {
+  hidden = 'msHidden'
+  visibilityChange = 'msvisibilitychange'
+  // @ts-ignore
+} else if (typeof document.webkitHidden !== 'undefined') {
+  hidden = 'webkitHidden'
+  visibilityChange = 'webkitvisibilitychange'
+}
+
+export const useTabVisibility = () => {
+  const getVisibility = useCallback(() => {
+    // @ts-ignore
+    return !document[hidden]
+  }, [])
+  const [visible, setVisible] = useState(getVisibility())
+  const handleVisibility = useCallback(() => setVisible(getVisibility()), [setVisible])
+  useEffect(() => {
+    document.addEventListener(visibilityChange, handleVisibility, false)
+    return () => {
+      document.removeEventListener(visibilityChange, handleVisibility)
+    }
+  }, [handleVisibility])
+
+  return visible
 }
