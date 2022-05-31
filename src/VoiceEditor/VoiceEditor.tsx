@@ -8,7 +8,7 @@ import type { JSXInternal } from 'preact/src/jsx'
 import { useStore } from './useStore'
 import * as VoiceEditorState from './VoiceEditorState'
 import { createSpeaker } from '../domain'
-import { Sentence } from '../domain/Sentence'
+import { Sentence } from '../domain'
 import { speakerRepository } from '../infra/SpeakerRepository'
 
 export type VoiceEditorProps = JSXInternal.HTMLAttributes<HTMLDivElement>
