@@ -1,9 +1,11 @@
 import { h } from 'preact'
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks'
 import type { JSXInternal } from 'preact/src/jsx'
-import { speakerSpeakSentenceUseCase } from './SpeakerSpeakSentenceUseCase'
 import type { SpeechRecognition } from './SpeechRecognition'
 import './VoiceUI.css'
+import { createSpeaker } from '../domain'
+import { Sentence } from '../domain/Sentence'
+import { speakerRepository } from '../infra/SpeakerRepository'
 
 export type VoiceUIStatus = 'pause' | 'processing' | 'error'
 
@@ -179,4 +181,17 @@ export const useTabVisibility = () => {
   }, [handleVisibility])
 
   return visible
+}
+
+const speakerSpeakSentenceUseCase = (infra = { speakerRepository }) => {
+  return {
+    execute(str: string) {
+      const domain = infra.speakerRepository.read() ?? createSpeaker()
+      // Domain works
+      const sentence = new Sentence(str)
+      const newDomain = domain.speak(sentence)
+      // Domain works
+      infra.speakerRepository.write(newDomain)
+    },
+  }
 }

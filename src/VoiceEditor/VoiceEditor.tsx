@@ -6,8 +6,10 @@ import { useEffect, useRef } from 'preact/hooks'
 import type { JSXInternal } from 'preact/src/jsx'
 
 import { useStore } from './useStore'
-import { updateSpokenSentenceUseCase } from './UpdateSpokenSentenceUseCase'
 import * as VoiceEditorState from './VoiceEditorState'
+import { createSpeaker } from '../domain'
+import { Sentence } from '../domain/Sentence'
+import { speakerRepository } from '../infra/SpeakerRepository'
 
 export type VoiceEditorProps = JSXInternal.HTMLAttributes<HTMLDivElement>
 export const VoiceEditor = (props: VoiceEditorProps) => {
@@ -69,4 +71,16 @@ export const VoiceEditor = (props: VoiceEditorProps) => {
 
   return <div className={'VoiceEditor'} ref={divRef} {...divProps} />
 
+}
+
+const updateSpokenSentenceUseCase = (infra = { speakerRepository }) => {
+  return {
+    execute(sentences: Sentence[]) {
+      const domain = infra.speakerRepository.read() ?? createSpeaker()
+      // Domain works
+      const newDomain = domain.writeSpokenSentences(sentences)
+      // Domain works
+      infra.speakerRepository.write(newDomain)
+    },
+  }
 }
