@@ -1,10 +1,6 @@
 import { h } from 'preact'
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks'
 import type { JSXInternal } from 'preact/src/jsx'
-// import SiriWave from 'siriwave'
-
-// import { useTabFocus } from '../hooks/use-tab-focus'
-// import { useTabVisibility } from '../hooks/use-tab-visibility'
 import { speakerSpeakSentenceUseCase } from './SpeakerSpeakSentenceUseCase'
 import type { SpeechRecognition } from './SpeechRecognition'
 import './VoiceUI.css'
@@ -121,23 +117,6 @@ export const VoiceUI = (props: VoiceUIProps) => {
     }
   }, [status])
 
-  // const siriRef = useRef<HTMLDivElement>(null)
-  // const [siriWave, setSiriWave] = useState<SiriWave>()
-
-  // useEffect(() => {
-  //   if (!siriRef.current || siriWave)
-  //     return
-  //   setSiriWave(new SiriWave({ container: siriRef.current, style: 'ios9', width: 320, height: 30, }),)
-  // }, [siriRef, siriWave])
-
-  // useEffect(() => {
-  //   if (status === 'processing') {
-  //     siriWave?.start()
-  //   } else {
-  //     siriWave?.stop()
-  //   }
-  // }, [siriWave, status])
-
   return (
     <div class={'VoiceUI'} {...divProps}>
       <div style={{ display: 'flex', height: '1em', alignItems: 'center', gap: '16px' }}>
@@ -149,8 +128,6 @@ export const VoiceUI = (props: VoiceUIProps) => {
         </div>
       </div>
       <p class={'VoiceUI-status'}>Text: {text}</p>
-      {/* {isSupportedSpeechRecognition ? <p className={'VoiceUI-text'}>{text}</p> : <p className={'VoiceUI-text'}>Your browser does not support SpeechRecognition API. Please use a browser like Chrome/Safari.</p>}
-      <div ref={siriRef} class={'VoiceUI-bar'} /> */}
     </div>
   )
 }
