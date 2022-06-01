@@ -25,15 +25,6 @@ export const VoiceUI = (props: VoiceUIProps) => {
     const lang = 'ja-JP'
     const _recognition: SpeechRecognition = new _SpeechRecognition()
     console.log('_recognition', _recognition)
-    // @ts-ignore
-    const restart = async () => {
-      if (_recognition) {
-        await _recognition.stop()
-        await new Promise((resolve) => setTimeout(resolve, 1000))
-        await _recognition.start()
-        setStatus('processing')
-      }
-    }
     _recognition.lang = lang
     _recognition.interimResults = true
     _recognition.continuous = true
