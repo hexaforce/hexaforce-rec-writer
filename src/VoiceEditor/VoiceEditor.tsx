@@ -1,4 +1,3 @@
-import { h } from 'preact'
 import { useEffect, useRef } from 'preact/hooks'
 import type { JSXInternal } from 'preact/src/jsx'
 
@@ -7,8 +6,7 @@ import { EditorView, keymap } from "@codemirror/view"
 import { defaultKeymap, cursorDocEnd, cursorLineDown } from '@codemirror/commands'
 import { placeholder } from '@codemirror/view'
 
-import { createSpeaker } from '../domain'
-import { Sentence } from '../domain'
+import { createSpeaker, Sentence } from '../domain'
 import { speakerRepository } from '../infra/SpeakerRepository'
 import * as VoiceEditorState from './VoiceEditorState'
 import { useStore } from './useStore'

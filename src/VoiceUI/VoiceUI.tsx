@@ -1,4 +1,3 @@
-import { h } from 'preact'
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks'
 import type { JSXInternal } from 'preact/src/jsx'
 
