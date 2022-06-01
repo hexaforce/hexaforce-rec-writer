@@ -2,8 +2,9 @@ import { h } from 'preact'
 import { useEffect, useRef } from 'preact/hooks'
 import type { JSXInternal } from 'preact/src/jsx'
 
-import { EditorState, EditorView, basicSetup } from '@codemirror/basic-setup'
-import { cursorDocEnd, cursorLineDown } from '@codemirror/commands'
+import { EditorState, basicSetup } from '@codemirror/basic-setup'
+import { EditorView, keymap } from "@codemirror/view"
+import { defaultKeymap, cursorDocEnd, cursorLineDown } from '@codemirror/commands'
 import { placeholder } from '@codemirror/view'
 
 import { createSpeaker } from '../domain'
@@ -23,11 +24,14 @@ export const VoiceEditor = (props: VoiceEditorProps) => {
     const editorState = EditorState.create({
       extensions: [
         basicSetup,
-        placeholder(`
-1. マイクの使用を許可する
-2. 音声入力するとメモが記録される
-`),
-      ],
+        keymap.of(defaultKeymap),
+        EditorView.theme({
+          '&': { maxHeight: '320px' },
+          '.cm-gutter,.cm-content': { minHeight: '320px' },
+          '.cm-scroller': { overflow: 'auto' },
+        }),
+        placeholder(`こちらに入力してください。`),
+      ]
     })
 
     const editorView = new EditorView({
