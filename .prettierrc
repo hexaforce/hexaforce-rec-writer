@@ -7,7 +7,9 @@
   "jsxSingleQuote": true,
   "semi": false,
   "importOrder": [
-    "^preact",
+    "^react",
+    "^siriwave",
+    "^@mui",
     "^@codemirror",
     "^[./]"
   ],

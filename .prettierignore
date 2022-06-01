@@ -1,4 +1,1 @@
-dist
-amplify
-aws-exports.js
-API.ts
+build

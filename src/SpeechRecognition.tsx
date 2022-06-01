@@ -136,7 +136,13 @@ export interface SpeechRecognition {
   onsoundend: SpeechErrorCallback
   onspeechstart: SpeechErrorCallback
   onspeechend: SpeechErrorCallback
+  onstart: SpeechErrorCallback
+  onaudiostart: SpeechErrorCallback
+  onaudioend: SpeechErrorCallback
   lang: string
+  // grammars: string
+  // maxAlternatives: Number
+  // serviceURI: string
   /**
    * Start transcribing utterances received from the microphone
    */
