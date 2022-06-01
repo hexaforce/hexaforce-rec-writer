@@ -116,10 +116,7 @@ const speakerSpeakSentenceUseCase = (infra = { speakerRepository }) => {
   return {
     execute(str: string) {
       const domain = infra.speakerRepository.read() ?? createSpeaker()
-      // Domain works
-      const sentence = new Sentence(str)
-      const newDomain = domain.speak(sentence)
-      // Domain works
+      const newDomain = domain.speak(new Sentence(str))
       infra.speakerRepository.write(newDomain)
     },
   }
