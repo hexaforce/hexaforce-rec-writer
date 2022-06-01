@@ -71,11 +71,7 @@ export const VoiceUI = (props: VoiceUIProps) => {
       }
     }
     recognitionRef.current = _recognition
-    setStatus('processing')
-    _recognition.start()
-    return () => {
-      _recognition?.stop()
-    }
+    setStatus('pause')
   }, [])
 
   const onClickToggleButton = useCallback(() => {
@@ -89,7 +85,7 @@ export const VoiceUI = (props: VoiceUIProps) => {
   }, [status])
 
   return (
-    <div class={'VoiceUI'} {...divProps}>
+    <div {...divProps}>
       <div style={{ display: 'flex', height: '1em', alignItems: 'center', gap: '16px' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', flex: 1 }}>
           <button onClick={onClickToggleButton}>
