@@ -17,14 +17,14 @@ xyz
 
   React.useEffect(() => {
     if (typeof doc == 'string') {
-      console.log("Doc change: " + doc)
+      console.log('Doc change: ' + doc)
     } else {
-      console.log("Doc change: " + doc.toJSON().join('\n'))
+      console.log('Doc change: ' + doc.toJSON().join('\n'))
     }
   }, [doc])
 
   React.useEffect(() => {
-    console.log("Mic change: " + mic)
+    console.log('Mic change: ' + mic)
   }, [mic])
 
   return (
