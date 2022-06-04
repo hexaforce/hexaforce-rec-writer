@@ -8,11 +8,28 @@ import { Text } from '@codemirror/state'
 import Codemirror from './Codemirror'
 
 function App() {
-  const [doc, setDoc] = React.useState<Text>()
+  const [doc, setDoc] = React.useState<Text | string>(`abc
+123
+xyz
+789
+`)
+  const [mic, setMic] = React.useState(false)
+
+  React.useEffect(() => {
+    if (typeof doc == 'string') {
+      console.log("Doc change: " + doc)
+    } else {
+      console.log("Doc change: " + doc.toJSON().join('\n'))
+    }
+  }, [doc])
+
+  React.useEffect(() => {
+    console.log("Mic change: " + mic)
+  }, [mic])
+
   return (
     <div style={{ width: '100%' }}>
-      <Codemirror doc={doc} setDoc={setDoc} editorFixHeight={320} />
-      {JSON.stringify(doc)}
+      <Codemirror doc={doc} setDoc={setDoc} mic={mic} setMic={setMic} editorFixHeight={320} />
     </div>
   )
 }

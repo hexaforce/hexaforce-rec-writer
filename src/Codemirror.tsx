@@ -8,43 +8,40 @@ import Stack from '@mui/material/Stack'
 
 import { basicSetup } from '@codemirror/basic-setup'
 import { cursorDocEnd, cursorLineDown, defaultKeymap } from '@codemirror/commands'
-import { EditorState, Text } from '@codemirror/state'
+import { EditorState } from '@codemirror/state'
 import { EditorView, keymap } from '@codemirror/view'
 import { placeholder } from '@codemirror/view'
 
 import SpeechToText from './Speech-to-Text'
 
 export default function Codemirror(props: any) {
-  const divRef = React.useRef<HTMLDivElement>(null)
+  const { mic, setMic, doc, setDoc, editorFixHeight } = props
+
   const editorViewRef = React.useRef<EditorView>()
-
-  const [mic, setMic] = React.useState(false)
-  const [recognitionText, setRecognitionText] = React.useState('')
-
-  const handleMic = () => {
-    setMic(!mic)
-  }
+  const updateListenerExtension = React.useCallback(() => {
+    return EditorView.updateListener.of((update) => {
+      if (editorViewRef.current) {
+        setDoc(editorViewRef.current.state.doc)
+      }
+    })
+  }, [])
 
   const editorState = EditorState.create({
-    doc: props.doc,
+    doc: doc,
     extensions: [
       basicSetup,
-      keymap.of(defaultKeymap),
+      // keymap.of(defaultKeymap),
+      updateListenerExtension(),
       EditorView.theme({
-        '&': { maxHeight: props.editorFixHeight + 'px' },
-        '.cm-gutter,.cm-content': { minHeight: props.editorFixHeight + 'px' },
+        '&': { maxHeight: editorFixHeight + 'px', textAlign: 'left!important' },
+        '.cm-gutter,.cm-content': { minHeight: editorFixHeight + 'px' },
         '.cm-scroller': { overflow: 'auto' },
       }),
       placeholder(`こちらに入力してください。`),
     ],
   })
 
-  React.useEffect(() => {
-    if (editorViewRef.current) {
-      props.setDoc(editorViewRef.current.state.doc)
-    }
-  }, [editorViewRef.current?.state.doc])
-
+  const divRef = React.useRef<HTMLDivElement>(null)
   React.useEffect(() => {
     if (divRef.current) {
       const editorView = new EditorView({
@@ -60,6 +57,7 @@ export default function Codemirror(props: any) {
     }
   }, [])
 
+  const [recognitionText, setRecognitionText] = React.useState('')
   React.useEffect(() => {
     if (recognitionText != '') {
       if (editorViewRef.current) {
@@ -76,11 +74,15 @@ export default function Codemirror(props: any) {
     }
   }, [recognitionText])
 
+  const handleMic = () => {
+    setMic(!mic)
+  }
+
   return (
     <Stack spacing={1} direction='column'>
-      <Box sx={{ height: props.editorFixHeight + 2, transform: 'translateZ(0px)', flexGrow: 1 }}>
+      <Box sx={{ height: editorFixHeight + 2, transform: 'translateZ(0px)', flexGrow: 1 }}>
         <div ref={divRef} />
-        <Avatar sx={{ position: 'absolute', bottom: 20, right: 20, width: 56, height: 56 }} onClick={handleMic}>
+        <Avatar sx={{ position: 'absolute', bottom: 20, right: 20, width: 56, height: 56, bgcolor: mic ? 'violet' : 'dodgerblue' }} onClick={handleMic}>
           {mic ? <MicOffIcon /> : <MicIcon />}
         </Avatar>
       </Box>

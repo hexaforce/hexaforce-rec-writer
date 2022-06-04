@@ -50,6 +50,9 @@ export default function SpeechToText(props: any) {
     _recognition.onstart = () => console.info('[speech] on start')
 
     recognitionRef.current = _recognition
+    return () => {
+      _recognition.stop()
+    }
   }, [])
 
   const [siriWave, setSiriWave] = React.useState<SiriWave>()
